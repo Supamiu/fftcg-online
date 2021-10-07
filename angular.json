@@ -9,7 +9,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/fftcg-online",
             "index": "apps/fftcg-online/src/index.html",
@@ -21,7 +23,9 @@
               "apps/fftcg-online/src/favicon.ico",
               "apps/fftcg-online/src/assets"
             ],
-            "styles": ["apps/fftcg-online/src/styles.less"],
+            "styles": [
+              "apps/fftcg-online/src/styles.less"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -86,7 +90,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/fftcg-online"],
+          "outputs": [
+            "coverage/apps/fftcg-online"
+          ],
           "options": {
             "jestConfig": "apps/fftcg-online/jest.config.js",
             "passWithNoTests": true
@@ -114,15 +120,102 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/fftcg-online-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/fftcg-online-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "model": {
+      "projectType": "library",
+      "root": "libs/model",
+      "sourceRoot": "libs/model/src",
+      "prefix": "fftcg-online",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/model"
+          ],
+          "options": {
+            "jestConfig": "libs/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/model/src/**/*.ts",
+              "libs/model/src/**/*.html"
+            ]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/model",
+            "tsConfig": "libs/model/tsconfig.lib.json",
+            "packageJson": "libs/model/package.json",
+            "main": "libs/model/src/index.ts",
+            "assets": [
+              "libs/model/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "text-parser": {
+      "projectType": "library",
+      "root": "libs/text-parser",
+      "sourceRoot": "libs/text-parser/src",
+      "prefix": "fftcg-online",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/text-parser"
+          ],
+          "options": {
+            "jestConfig": "libs/text-parser/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/text-parser/src/**/*.ts",
+              "libs/text-parser/src/**/*.html"
+            ]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/libs/text-parser",
+            "tsConfig": "libs/text-parser/tsconfig.lib.json",
+            "packageJson": "libs/text-parser/package.json",
+            "main": "libs/text-parser/src/lib/main.ts"
+          }
+        },
+        "run": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "text-parser:build",
+            "watch": false
           }
         }
       }
     }
   },
   "cli": {
+    "analytics": false,
     "defaultCollection": "@nrwl/angular",
     "packageManager": "npm"
   },
