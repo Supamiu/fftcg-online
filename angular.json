@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "projects": {
+    "fftcg-online": {
+      "projectType": "application",
+      "root": "apps/fftcg-online",
+      "sourceRoot": "apps/fftcg-online/src",
+      "prefix": "fftcg-online",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/fftcg-online",
+            "index": "apps/fftcg-online/src/index.html",
+            "main": "apps/fftcg-online/src/main.ts",
+            "polyfills": "apps/fftcg-online/src/polyfills.ts",
+            "tsConfig": "apps/fftcg-online/tsconfig.app.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "apps/fftcg-online/src/favicon.ico",
+              "apps/fftcg-online/src/assets"
+            ],
+            "styles": ["apps/fftcg-online/src/styles.less"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/fftcg-online/src/environments/environment.ts",
+                  "with": "apps/fftcg-online/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "fftcg-online:build:production"
+            },
+            "development": {
+              "browserTarget": "fftcg-online:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fftcg-online:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/fftcg-online/src/**/*.ts",
+              "apps/fftcg-online/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/fftcg-online"],
+          "options": {
+            "jestConfig": "apps/fftcg-online/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "fftcg-online-e2e": {
+      "root": "apps/fftcg-online-e2e",
+      "sourceRoot": "apps/fftcg-online-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/fftcg-online-e2e/cypress.json",
+            "devServerTarget": "fftcg-online:serve:development",
+            "tsConfig": "apps/fftcg-online-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "fftcg-online:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/fftcg-online-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "less",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "less"
+    }
+  },
+  "defaultProject": "fftcg-online"
+}
