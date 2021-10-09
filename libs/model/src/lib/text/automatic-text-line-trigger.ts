@@ -1,7 +1,7 @@
-import { GameEvent } from '../game/event/game-event';
+import { GameEventType } from '../game/event/game-event-type';
 import { EventPredicate } from './event-predicate';
 
 export interface AutomaticTextLineTrigger {
-  condition: GameEvent;
-  predicates: EventPredicate[];
+  event: GameEventType;
+  predicates: Array<keyof EventPredicate>;
 }

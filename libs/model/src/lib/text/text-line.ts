@@ -8,7 +8,7 @@ interface BaseTextLine {
 
 export interface AutomaticTextLine extends BaseTextLine {
   trigger: AutomaticTextLineTrigger;
-  action: CardAction;
+  actions: CardAction[];
 }
 
 export type TextLine = AutomaticTextLine;

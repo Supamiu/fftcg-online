@@ -1,7 +1,14 @@
 import { GameEvent } from '../game/event/game-event';
+import { Card } from '@fftcg-online/model';
 
 export class EventPredicate {
 
-  constructor(public matches: (event: GameEvent) => boolean) {
+  static IS_SELF = new EventPredicate(card => {
+    return event => {
+      return event.card?.card.code === card.code;
+    };
+  });
+
+  constructor(public matches: (card: Card) => (event: GameEvent) => boolean) {
   }
 }

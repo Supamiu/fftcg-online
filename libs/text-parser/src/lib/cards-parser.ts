@@ -1,4 +1,5 @@
 import { Card, CardElement, CardType, RawCard } from '@fftcg-online/model';
+import { TextLine } from '../../../model/src/lib/text/text-line';
 
 export class CardsParser {
   static ELEMENTS: Record<string, CardElement> = {
@@ -41,9 +42,8 @@ export class CardsParser {
       jobs: [raw.Job_EN],
       power: raw.Power ? +raw.Power : 0,
       type: CardsParser.TYPES[raw.Type_EN],
-      // TODO
+
       text: []
     };
-
   }
 }

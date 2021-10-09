@@ -1,7 +1,4 @@
-import { BackupCard, Card, ForwardCard, MonsterCard, SummonCard } from '../card/card';
-import { CardCounter } from '../card/card-counter';
-import { CardElement } from '../card/card-element';
-import { CardType } from '../card/card-type';
+import { BackupCard, Card, CardCounter, CardElement, CardType, ForwardCard, MonsterCard, SummonCard } from '../card';
 
 interface BaseCardStatus {
   card: Card;
@@ -15,6 +12,7 @@ interface BaseCardStatus {
 interface DullableCardStatus extends BaseCardStatus {
   card: ForwardCard | MonsterCard | BackupCard;
   dull: boolean;
+  type: CardType.FORWARD | CardType.BACKUP;
 }
 
 export interface ForwardCardStatus extends DullableCardStatus {
@@ -22,21 +20,22 @@ export interface ForwardCardStatus extends DullableCardStatus {
   canAttack: boolean;
   power: number;
   damage: number;
+  type: CardType.FORWARD;
 }
 
-export interface MonsterCardStatus extends DullableCardStatus {
+export interface MonsterCardStatus extends BaseCardStatus {
   card: MonsterCard;
-  canAttack?: boolean;
-  power?: number;
-  damage?: number;
+  type: CardType.MONSTER;
 }
 
 export interface BackupCardStatus extends DullableCardStatus {
   card: BackupCard;
+  type: CardType.BACKUP;
 }
 
 export interface SummonCardStatus extends BaseCardStatus {
   card: SummonCard;
+  type: CardType.SUMMON;
 }
 
 export type CardStatus = ForwardCardStatus | MonsterCardStatus | BackupCardStatus | SummonCardStatus;

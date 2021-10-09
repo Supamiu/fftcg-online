@@ -9,7 +9,6 @@ interface BaseCard {
   code: string;
   cost: number;
   elements: CardElement[];
-  type: CardType;
   categories: string[];
   text: TextLine[];
 }

@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -33,28 +28,18 @@
   },
   "projects": {
     "fftcg-online": {
-      "tags": [
-        "*"
-      ]
+      "tags": ["*"]
     },
     "fftcg-online-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "fftcg-online"
-      ]
+      "implicitDependencies": ["fftcg-online"]
     },
     "model": {
-      "tags": [
-        "*"
-      ]
+      "tags": ["*"]
     },
     "text-parser": {
-      "tags": [
-        "*"
-      ],
-      "dependencies": [
-        "model"
-      ]
+      "tags": ["*"],
+      "dependencies": ["model"]
     }
   }
 }

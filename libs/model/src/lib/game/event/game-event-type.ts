@@ -17,6 +17,7 @@ export enum GameEventType {
   CARD_DULLED,
   CARD_ACTIVATED, // Card changes from dulled to not dulled
   CARD_PLAYED, // Card played on the board
+  THIS_CARD_PLAYED, // This card played on the board (for the cards that are saying "when <card's name> enters the field")
   FORWARD_ATTACKING,
   FORWARDS_PARTY_ATTACKING,
   FORWARD_BLOCKING,
