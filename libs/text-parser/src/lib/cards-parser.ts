@@ -42,7 +42,6 @@ export class CardsParser {
       jobs: [raw.Job_EN],
       power: raw.Power ? +raw.Power : 0,
       type: CardsParser.TYPES[raw.Type_EN],
-
       text: []
     };
   }
